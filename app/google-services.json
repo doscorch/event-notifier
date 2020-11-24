@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "935512356040",
+    "firebase_url": "https://event-notifier-f7778.firebaseio.com",
+    "project_id": "event-notifier-f7778",
+    "storage_bucket": "event-notifier-f7778.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935512356040:android:dcebf7a67a882f70bfe1fd",
+        "android_client_info": {
+          "package_name": "com.example.eventnotifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935512356040-0ulffuim9eb0lm67483q4dv911t01v7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUnHBRKzF7sw8MwoQ36hnDBES2r_qsrIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935512356040-0ulffuim9eb0lm67483q4dv911t01v7c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

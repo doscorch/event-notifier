@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <EditText
+        android:id="@+id/eventNameInput"
+        android:layout_width="288dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="76dp"
+        android:background="#4E4E4E"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventCreateTitle" />
+
+    <EditText
+        android:id="@+id/eventDescriptionInput"
+        android:layout_width="293dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="76dp"
+        android:background="#4E4E4E"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventNameInput" />
+
+    <TextView
+        android:id="@+id/eventCreateTitle"
+        android:layout_width="219dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="create event"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/eventCreateCancelBtn"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="44dp"
+        android:background="#FD8A8A"
+        android:text="cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescriptionInput" />
+
+    <Button
+        android:id="@+id/eventCreateCreateBtn"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:background="#CAFF81"
+        android:text="create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescriptionInput" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="97dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="4dp"
+        android:text="name:"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/eventNameInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="name:" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="108dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="8dp"
+        android:text="description:"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/eventDescriptionInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

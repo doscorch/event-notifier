@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="#000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/eventInstanceName"
+                android:layout_width="184dp"
+                android:layout_height="72dp"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="Event Name"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/eventInstanceDate"
+                android:layout_width="124dp"
+                android:layout_height="72dp"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="Date"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/eventInstanceInfoBtn"
+                style="@android:style/Widget.DeviceDefault.ImageButton"
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#4E4E4E"
+                android:src="@android:drawable/ic_dialog_info"
+                tools:src="@android:drawable/ic_dialog_info" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
