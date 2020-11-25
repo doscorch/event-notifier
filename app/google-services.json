@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:935512356040:android:dcebf7a67a882f70bfe1fd",
         "android_client_info": {
-          "package_name": "com.example.eventnotifier"
+          "package_name": "com.example.eventNotifier"
         }
       },
       "oauth_client": [

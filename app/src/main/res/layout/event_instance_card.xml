@@ -27,7 +27,8 @@
                 android:padding="5dp"
                 android:text="Event Name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/eventInstanceDate"
@@ -38,7 +39,8 @@
                 android:padding="5dp"
                 android:text="Date"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
             <ImageButton
                 android:id="@+id/eventInstanceInfoBtn"

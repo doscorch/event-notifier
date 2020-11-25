@@ -27,7 +27,8 @@
                 android:padding="5dp"
                 android:text="Event Name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/eventNotificationBtn"
