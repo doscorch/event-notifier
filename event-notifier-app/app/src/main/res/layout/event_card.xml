@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/eventName"
-                android:layout_width="271dp"
+                android:layout_width="208dp"
                 android:layout_height="72dp"
                 android:fontFamily="monospace"
                 android:gravity="center_vertical"
@@ -29,6 +29,16 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/singleEventLogNavBtn"
+                style="@android:style/Widget.DeviceDefault.ImageButton"
+                android:layout_width="117dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#676767"
+                android:src="@mipmap/list_icon2_foreground"
+                android:tint="#000000" />
 
             <ImageButton
                 android:id="@+id/eventNotificationBtn"

@@ -14,10 +14,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
-class EventAdapter(val eventList: ArrayList<Event>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+class EventAdapter(val navigationHost: NavigationHost, val eventList: ArrayList<Event>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.event_card, parent, false)
-        return ViewHolder(parent.context,this, eventList, v)
+        return ViewHolder(navigationHost, parent.context,this, eventList, v)
     }
 
     override fun onBindViewHolder(holder: EventAdapter.ViewHolder, position: Int) {
@@ -28,7 +28,7 @@ class EventAdapter(val eventList: ArrayList<Event>) : RecyclerView.Adapter<Event
         return eventList.size
     }
 
-    class ViewHolder(val context: Context, val adapter: EventAdapter, val eventList: ArrayList<Event>, itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(val navigationHost: NavigationHost, val context: Context, val adapter: EventAdapter, val eventList: ArrayList<Event>, itemView: View) : RecyclerView.ViewHolder(itemView) {
         val db = Firebase.firestore
         fun bindItems(event: Event) {
             val eventName = itemView.findViewById(R.id.eventName) as TextView
@@ -54,6 +54,11 @@ class EventAdapter(val eventList: ArrayList<Event>) : RecyclerView.Adapter<Event
                 adapter.notifyDataSetChanged()
                 Toast.makeText(context, "deleted event", Toast.LENGTH_SHORT).show()
                 db.collection("events").document(event.id).delete()
+            }
+
+            val eventLogBtn = itemView.findViewById(R.id.singleEventLogNavBtn) as ImageButton
+            eventLogBtn.setOnClickListener(){
+                navigationHost.navigateTo(EventLogFragment(event.name), false)
             }
 
             eventName.text = event.name

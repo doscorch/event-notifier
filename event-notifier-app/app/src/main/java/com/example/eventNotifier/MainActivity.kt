@@ -2,16 +2,34 @@ package com.example.eventNotifier
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
-class MainActivity : AppCompatActivity(), NavigationHost  {
+open class MainActivity() : AppCompatActivity(), NavigationHost  {
     lateinit var toolbar: ActionBar
+    val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        initialize();
+
+        // init container on welcome fragment
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.container, WelcomeFragment())
+                .commit()
+        }
+    }
+
+    fun initialize(){
         setContentView(R.layout.container)
         toolbar = supportActionBar!!
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
@@ -29,14 +47,27 @@ class MainActivity : AppCompatActivity(), NavigationHost  {
             }
             true
         }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("FCMToken", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
 
-        // init container on welcome fragment
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.container, WelcomeFragment())
-                .commit()
-        }
+            // Get new FCM registration token
+            val token = task.result;
+            Log.d("FCMToken", task.result.toString())
+            db.collection("users")
+                .document("user")
+                .update(mapOf(
+                    "registrationToken" to task.result
+                ))
+                .addOnSuccessListener { r ->
+                    Log.d("Installations", "success adding auth token to db" + task.result)
+                }
+                .addOnFailureListener { ex ->
+                    Log.e("Installations", ex.localizedMessage);
+                }
+        })
     }
 
     override fun navigateTo(fragment: Fragment, addToBackstack: Boolean) {

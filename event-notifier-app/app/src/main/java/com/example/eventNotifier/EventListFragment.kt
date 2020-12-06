@@ -27,7 +27,7 @@ class EventListFragment : Fragment() {
         // setup recycler view
         val recyclerView = view.findViewById(R.id.eventList) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-        val adapter = EventAdapter(eventList)
+        val adapter = EventAdapter((activity as NavigationHost), eventList)
         recyclerView.adapter = adapter
 
         // get events from the db
