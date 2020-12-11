@@ -25,15 +25,20 @@ class EventInstanceAdapter(val navigationHost: NavigationHost, val eventInstance
     class ViewHolder(val navigationHost: NavigationHost, val eventInstanceList: ArrayList<EventInstance>, itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(eventInstance: EventInstance) {
+            // get elements from view
             val eventName = itemView.findViewById(R.id.eventInstanceName) as TextView
             val eventDate = itemView.findViewById(R.id.eventInstanceDate) as TextView
             val infoButton = itemView.findViewById(R.id.eventInstanceInfoBtn) as ImageButton
-            infoButton.setOnClickListener(){
-                navigationHost.navigateTo(EventInstanceFragment(eventInstance), false)
-            }
 
+            // populate view text
             eventName.text = eventInstance.name
             eventDate.text = eventInstance.date.toString()
+
+            // setup info btn onclick listener
+            infoButton.setOnClickListener(){
+                // navigate to event instance view
+                navigationHost.navigateTo(EventInstanceFragment(eventInstance), false)
+            }
         }
     }
 }

@@ -25,29 +25,39 @@ class EventLogFragment(eventName: String = "") : Fragment() {
     private val db = Firebase.firestore;
     private lateinit var adapter: EventInstanceAdapter;
     private lateinit var spinner: ProgressBar;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.event_instance_list, container, false)
+
+        // get elements in view
         spinner = view.findViewById(R.id.progressBar) as ProgressBar
         adapter = EventInstanceAdapter((activity as NavigationHost), eventInstanceList);
+
         // setup recycler view
         val recyclerView = view.findViewById(R.id.eventInstanceList) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
         recyclerView.adapter = adapter
 
+        // update view
         updateLog();
 
         return view;
     }
 
     private fun updateLog(){
+        // clear list
         eventInstanceList.clear();
         adapter.notifyDataSetChanged();
+
+        // show loading spinner
         spinner.visibility = View.VISIBLE;
 
+        // get proper events
         if(eventName == ""){
             getAllEvents()
         }
@@ -64,6 +74,7 @@ class EventLogFragment(eventName: String = "") : Fragment() {
     }
 
     private fun getAllEvents(){
+        // get all event instances from db
         db.collection("events")
             .get()
             .addOnSuccessListener { res ->
@@ -85,6 +96,7 @@ class EventLogFragment(eventName: String = "") : Fragment() {
     }
 
     private fun getEventInstances(eventNames: ArrayList<String>){
+        // get event instances of a particular name from the db
         db.collection("eventInstances")
             .whereIn("name", eventNames.toList())
             .orderBy("date", Query.Direction.DESCENDING)
@@ -120,6 +132,7 @@ class EventLogFragment(eventName: String = "") : Fragment() {
                 true
             }
             R.id.searchLog -> {
+                // create search dialog
                 val input = EditText(context)
                 val dialog: AlertDialog = AlertDialog.Builder(context)
                     .setTitle("Search log")

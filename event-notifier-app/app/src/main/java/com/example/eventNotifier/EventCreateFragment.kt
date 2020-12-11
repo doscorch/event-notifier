@@ -15,16 +15,20 @@ class EventCreateFragment : Fragment() {
     val db = Firebase.firestore
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        // get element from view
         val view = inflater.inflate(R.layout.event_create, container, false)
         val name = view.findViewById(R.id.eventNameInput) as EditText
         val description = view.findViewById(R.id.eventDescriptionInput) as EditText
-
         val cancelBtn = view.findViewById(R.id.eventCreateCancelBtn) as Button
+        val createBtn = view.findViewById(R.id.eventCreateCreateBtn) as Button
+
+        // setup cancel btn onclick listener
         cancelBtn.setOnClickListener {
             (activity as NavigationHost).navigateTo(EventListFragment(), false)
         }
 
-        val createBtn = view.findViewById(R.id.eventCreateCreateBtn) as Button
+        // setup create btn onclick listener
         createBtn.setOnClickListener {
             if(name.text.isNullOrEmpty()){
                 Toast.makeText(context, "name is required", Toast.LENGTH_SHORT).show()
@@ -33,12 +37,16 @@ class EventCreateFragment : Fragment() {
                 Toast.makeText(context, "description is required", Toast.LENGTH_SHORT).show()
             }
             else {
+                // create event
                 val event = Event()
                 event.name = name.text.toString()
                 event.description = description.text.toString()
+
+                // add to db
                 db.collection("events")
                     .add(event.toMap())
                     .addOnSuccessListener { r ->
+                        // navigate back to event list
                         (activity as NavigationHost).navigateTo(EventListFragment(), false)
                     }
                     .addOnFailureListener { ex ->

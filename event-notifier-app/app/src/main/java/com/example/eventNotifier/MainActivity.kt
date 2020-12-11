@@ -30,8 +30,12 @@ open class MainActivity() : AppCompatActivity(), NavigationHost  {
     }
 
     fun initialize(){
+
+        // setup content view
         setContentView(R.layout.container)
         toolbar = supportActionBar!!
+
+        // setup bottom navigation
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -47,13 +51,15 @@ open class MainActivity() : AppCompatActivity(), NavigationHost  {
             }
             true
         }
+
+        // setup google cloud FCM service
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.w("FCMToken", "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
 
-            // Get new FCM registration token
+            // Get new FCM registration token from db
             val token = task.result;
             Log.d("FCMToken", task.result.toString())
             db.collection("users")
@@ -62,7 +68,7 @@ open class MainActivity() : AppCompatActivity(), NavigationHost  {
                     "registrationToken" to task.result
                 ))
                 .addOnSuccessListener { r ->
-                    Log.d("Installations", "success adding auth token to db" + task.result)
+                    Log.d("Installations", "success adding auth token to db " + task.result)
                 }
                 .addOnFailureListener { ex ->
                     Log.e("Installations", ex.localizedMessage);
@@ -70,6 +76,7 @@ open class MainActivity() : AppCompatActivity(), NavigationHost  {
         })
     }
 
+    // navigation handler
     override fun navigateTo(fragment: Fragment, addToBackstack: Boolean) {
         val transaction = supportFragmentManager
             .beginTransaction()
